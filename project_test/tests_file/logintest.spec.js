@@ -1,5 +1,5 @@
 const { test, expect, chromium } = require("@playwright/test");
-const {login} = require("../pom_page/loginpom.spec.js");
+const {login} = require("../pom_page/loginpom.js");
 test('logintest1', async ({page}) => {
     // const browser = await chromium.launch();
     // const context = await browser.newContext();
@@ -7,7 +7,7 @@ test('logintest1', async ({page}) => {
 
     const login1 = new login(page); 
  await login1.goto();
- await login1.entername("akshatka nu9@gmail.com");
+ await login1.entername("akshatkanu9@gmail.com");
  //await login1.nextbtn.click();  
  await login1.pass.fill("ONEindia_123")  
  await login1.signin.click();
@@ -28,7 +28,7 @@ await login1.fieldselection();
 
 await login1.createdtime.dragTo(login1.modifiedtime);
 
- await page.pause();
+ //await page.pause();
 
     
     
