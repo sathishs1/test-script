@@ -28,7 +28,7 @@ test.describe("Login Validations", () => {
   });
 
   test.afterAll(async () => {
-    await browser.close();
+  //  await browser.close();
     console.log("Browser closed after all tests");
   });
 

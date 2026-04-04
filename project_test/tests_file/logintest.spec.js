@@ -12,6 +12,7 @@ test('logintest1', async ({page}) => {
  await login1.pass.fill("ONEindia_123")  
  await login1.signin.click();
  await login1.contactmodule();
+ await page.waitForLoadState("networkidle");
  if(await page.url().includes("contacts/list")){
     console.log("Login successful and navigated to contacts module");   
  }
