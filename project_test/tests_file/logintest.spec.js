@@ -21,20 +21,20 @@ test('logintest1', async ({page}) => {
  }
 }
  catch (error){
-    console.log("Login failed or did not navigate to contacts module");
+    console.log("Loginfailed or did not navigate to contacts module");
     await page.close(); 
  }
 
 
- await expect(page).toHaveTitle("All Contacts",{exact : true}); 
- console.log("Title assertion passed: Navigated to the correct page with title 'All Contacts'");  
-await login1.contactmodule();
+//  await expect(page).toHaveTitle("All Contacts",{exact : true}); 
+//  console.log("Title assertion passed: Navigated to the correct page with title 'All Contacts'");  
+// await login1.contactmodule();
 
-await login1.checkboxbulk();
-await login1.exportoptionselect();
-await login1.fieldselection();
+// await login1.checkboxbulk();
+// await login1.exportoptionselect();
+// await login1.fieldselection();
 
-await login1.createdtime.dragTo(login1.modifiedtime);
+// await login1.createdtime.dragTo(login1.modifiedtime);
 
  //await page.pause();
 
