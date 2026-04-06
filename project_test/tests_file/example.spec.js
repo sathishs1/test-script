@@ -1,23 +1,15 @@
 const { test, expect,chromium } = require("@playwright/test");
 
-test.describe.configure({ mode: "serial" });
 
-test.describe("Login Validations", () => {
+test.describe.serial("Login Validations", () => {
 
   
-  let browser;
-  let context;
-  let page;
-
-
-  test.beforeAll(async () => {
-    browser = await chromium.launch({
-      headless: false,
-      args: ["--start-maximized"],
-    });
-
+   let page;
+   let context;
+   test.beforeAll(async ({ browser }) => {
     context = await browser.newContext();
     page = await context.newPage();
+  
     await page.goto("https://app.nowdigitaleasy.com/auth/login");
 
     if (page.url() === "https://app.nowdigitaleasy.com/auth/login") {
@@ -27,17 +19,12 @@ test.describe("Login Validations", () => {
     } 
   });
 
-  test.afterAll(async () => {
-    await browser.close();
-    console.log("Browser closed after all tests");
-  });
-
 
   
   test("Test 1 - Empty email field", async () => {
     
 
-    await page.goto("https://app.nowdigitaleasy.com/auth/login");
+    //ait page.goto("https://app.nowdigitaleasy.com/auth/login");
 
     await page.locator('//button[@type="submit"]').click();
     await page.waitForTimeout(2000);
@@ -51,7 +38,7 @@ test.describe("Login Validations", () => {
 
   test("Test 2 - Uppercase email", async () => {
 
-    await page.goto("https://app.nowdigitaleasy.com/auth/login");
+    //ait page.goto("https://app.nowdigitaleasy.com/auth/login");
     await page.waitForLoadState("networkidle");
 
     await page.locator('[name="email"]').fill("NEWDEMO@GMAIL.COM");
@@ -69,9 +56,9 @@ test.describe("Login Validations", () => {
   
   test("Test 3 - Wrong password", async () => {
 
-    await page.goto("https://app.nowdigitaleasy.com/auth/login");
+    //ait page.goto("https://app.nowdigitaleasy.com/auth/login");
     await page.waitForLoadState("networkidle");
-
+  
     await page.locator('[name="email"]').fill("newdemo@gmail.com");
     await page.locator('//button[@type="submit"]').click();
     await page.waitForTimeout(1000);
@@ -91,7 +78,8 @@ test.describe("Login Validations", () => {
  
   test("Test 4 - Clear email and try without password", async () => {
 
-    await page.goto("https://app.nowdigitaleasy.com/auth/login");
+   //wait page.goto("https://app.nowdigitaleasy.com/auth/login");
+     await page.getByRole("link", { name: "Change" }).click()
     await page.waitForLoadState("networkidle");
 
    
@@ -99,10 +87,7 @@ test.describe("Login Validations", () => {
     await page.locator('//button[@type="submit"]').click();
     await page.waitForTimeout(1000);
 
-   
-    await page.locator('//input[@type="email"]').press("Control+A");
-    await page.locator('//input[@type="email"]').press("Delete");
-
+     await page.locator('//input[@type="email"]').fill("");
     
     await page.locator('[name="email"]').fill("newdemo@gmail.com");
     await page.locator('//button[@type="submit"]').click();
@@ -123,7 +108,8 @@ test.describe("Login Validations", () => {
 
   test("Test 5 - Valid login", async () => {
 
-    await page.goto("https://app.nowdigitaleasy.com/auth/login");
+    //ait page.goto("https://app.nowdigitaleasy.com/auth/login");
+      await page.getByRole("link", { name: "Change" }).click()
     await page.waitForLoadState("networkidle");
 
     await page.locator('[name="email"]').fill("newdemo@gmail.com");
@@ -139,7 +125,7 @@ test.describe("Login Validations", () => {
     console.log("Login successful!");
     await page.waitForTimeout(6000);
 
-    await page.close();
+   
   });
 
 });
