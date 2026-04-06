@@ -27,6 +27,7 @@ class login{
         await this.signin.click();
     }
     async contactmodule(){
+        await this.page.waitForLoadState("networkidle");
         await this.page.locator("(//span[text()='Contacts'])[2]").click();
     }
 

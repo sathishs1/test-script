@@ -10,15 +10,22 @@ test('logintest1', async ({page}) => {
  await login1.entername("akshatkanu9@gmail.com");
  //await login1.nextbtn.click();  
  await login1.pass.fill("ONEindia_123")  
+ try {
  await login1.signin.click();
- await login1.contactmodule();
+
+ await login1.contactmodule({ timeout: 50000 });
  await page.waitForLoadState("networkidle");
- if(await page.url().includes("contacts/list")){
-    console.log("Login successful and navigated to contacts module");   
+ if( page.url().includes("contacts/list")){
+    console.log("Login successful and navigated to contacts module");  
+    
  }
- else{
+}
+ catch (error){
     console.log("Login failed or did not navigate to contacts module");
+    await page.close(); 
  }
+
+
  await expect(page).toHaveTitle("All Contacts",{exact : true}); 
  console.log("Title assertion passed: Navigated to the correct page with title 'All Contacts'");  
 await login1.contactmodule();
