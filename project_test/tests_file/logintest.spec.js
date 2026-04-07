@@ -13,7 +13,7 @@ test('logintest1', async ({page}) => {
  try {
  await login1.signin.click();
 
- await login1.contactmodule({ timeout: 50000 });
+ await login1.contactmodule().waitfor();
  await page.waitForLoadState("networkidle");
  if( page.url().includes("contacts/list")){
     console.log("Login successful and navigated to contacts module");  
