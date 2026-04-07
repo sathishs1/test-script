@@ -14,14 +14,13 @@ test('logintest1', async ({page}) => {
  await login1.signin.click();
 
  await login1.contactmodule().waitfor();
- await page.waitForLoadState("networkidle");
  if( page.url().includes("contacts/list")){
     console.log("Login successful and navigated to contacts module");  
     
  }
 }
  catch (error){
-    console.log("Loginfailed or did not navigate to contacts module");
+    console.log("Login failed or did not navigate to contacts module");
     await page.close(); 
  }
 
