@@ -14,7 +14,7 @@ export default defineConfig({
     {
       name: 'chromium',
       use: {
-        headless: false,        // ← Show browser window
+        headless: true,        // ← Show browser window
         viewport: null,
         trace: 'on-first-retry',
         launchOptions: {
